@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api") // endpoint
+@RequestMapping("/api") // endPoint
 public class DemoRestController {
 
     private final ProductManager productManager;
@@ -19,8 +19,7 @@ public class DemoRestController {
     }
 
     @GetMapping("/hello")
-    public String hello(@RequestParam(value =
-            "msg", required = false) String msg) {
+    public String hello(@RequestParam(value = "msg", required = false) String msg) {
         return msg;
     }
 
