@@ -1,6 +1,6 @@
 package com.dam.hellospring.repository;
 
-import domain.Member;
+import com.dam.hellospring.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

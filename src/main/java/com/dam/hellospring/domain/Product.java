@@ -1,4 +1,4 @@
-package com.dam.hellospring.vo;
+package com.dam.hellospring.domain;
 
 public class Product {
 

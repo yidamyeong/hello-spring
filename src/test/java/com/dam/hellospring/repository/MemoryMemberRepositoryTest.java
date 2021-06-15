@@ -1,9 +1,8 @@
 package com.dam.hellospring.repository;
 
-import domain.Member;
+import com.dam.hellospring.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.dam.hellospring.service;
 
 import com.dam.hellospring.repository.MemberRepository;
-import domain.Member;
+import com.dam.hellospring.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

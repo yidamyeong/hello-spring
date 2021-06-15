@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PRODUCT">
+
+    <!-- (R) 전체 제품 조회 -->
+    <select id="findAll" resultType="com.dam.hellospring.domain.Product">
+        SELECT * FROM PRODUCT
+    </select>
+
+    <!-- (R) id로 제품 조회 -->
+    <select id="findById" resultType="com.dam.hellospring.domain.Product" parameterType="int">
+        SELECT * FROM PRODUCT WHERE ID = #{id}
+    </select>
+
+    <!-- (C) 제품 추가 -->
+    <insert id="addProduct" parameterType="com.dam.hellospring.domain.Product">
+        INSERT INTO PRODUCT (NAME, PRICE)
+        VALUES (#{name}, #{price})
+    </insert>
+
+    <!-- (R) 마지막에 추가한 제품 조회 -->
+    <select id="findLastAdded" resultType="com.dam.hellospring.domain.Product">
+        SELECT  P.*
+        FROM    (
+                SELECT (ROW_NUMBER() OVER(ORDER BY ID DESC)) AS RN, *
+                FROM PRODUCT
+                ) P
+        WHERE RN = 1
+    </select>
+
+    <!-- (U) 제품정보 수정 -->
+    <update id="updateProduct" parameterType="com.dam.hellospring.domain.Product">
+        UPDATE PRODUCT
+        SET NAME = #{name}, PRICE = #{price}
+        WHERE ID = #{id}
+    </update>
+
+    <!-- (D) 제품 삭제 -->
+    <delete id="deleteProduct" parameterType="int">
+        DELETE FROM PRODUCT WHERE ID = #{id}
+    </delete>
+
+</mapper>

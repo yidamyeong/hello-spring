@@ -1,6 +1,6 @@
 package com.dam.hellospring.dto;
 
-import com.dam.hellospring.vo.Product;
+import com.dam.hellospring.domain.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

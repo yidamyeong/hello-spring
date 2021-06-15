@@ -1,7 +1,7 @@
 package com.dam.hellospring.service;
 
 import com.dam.hellospring.repository.MemoryMemberRepository;
-import domain.Member;
+import com.dam.hellospring.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
