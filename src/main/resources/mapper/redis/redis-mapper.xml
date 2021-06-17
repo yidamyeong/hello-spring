@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="REDIS">
+
+    <!-- (C) 추가 -->
+    <insert id="addData" parameterType="com.dam.hellospring.domain.Redis">
+        INSERT INTO REDIS_CONNECT (KEY, VAL)
+        VALUES (#{key}, #{val})
+    </insert>
+
+    <!-- (R) 마지막에 추가한 제품 조회 -->
+    <select id="findLastAdded" resultType="com.dam.hellospring.domain.Redis">
+        SELECT  R.*
+        FROM    (
+                    SELECT (ROW_NUMBER() OVER(ORDER BY ID DESC)) AS RN, *
+                    FROM REDIS_CONNECT
+                ) R
+        WHERE RN = 1
+    </select>
+
+    <!-- (R) 전체 조회 -->
+    <select id="findAll" resultType="com.dam.hellospring.domain.Redis">
+        SELECT * FROM REDIS_CONNECT
+    </select>
+
+    <!-- (R) 하나만 조회 -->
+    <select id="findByKey" resultType="com.dam.hellospring.domain.Redis" parameterType="String">
+        SELECT * FROM REDIS_CONNECT
+        WHERE _KEY = #{key}
+    </select>
+</mapper>

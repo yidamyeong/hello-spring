@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan(basePackages = "com.dam.hellospring.mapper.**", sqlSessionFactoryRef = "sqlSessionFactory")
-public class DataSourceConfiguration {
+public class DataSourceConfig {
 
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix = "spring.datasource.hikari")

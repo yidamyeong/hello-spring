@@ -1,6 +1,7 @@
 package com.dam.hellospring.mapper;
 
 import com.dam.hellospring.domain.Product;
+import com.dam.hellospring.domain.Redis;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,5 +40,14 @@ public class ProductMapper {
 
     public void deleteProduct(int id) {
         sqlSessionTemplate.delete("PRODUCT.deleteProduct", id);
+    }
+
+
+    // redis data postgreSQL 넣기
+    public Redis insertRedisData(Redis redis) {
+        sqlSessionTemplate.insert("REDIS.addData", redis);
+        Redis result = sqlSessionTemplate.selectOne("REDIS.findLastAdded");
+        System.out.println("**** result: " + result);
+        return result;
     }
 }

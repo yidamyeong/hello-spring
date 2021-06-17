@@ -1,6 +1,7 @@
 package com.dam.hellospring.service;
 
 import com.dam.hellospring.domain.Product;
+import com.dam.hellospring.domain.Redis;
 import com.dam.hellospring.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(int id) {
         productMapper.deleteProduct(id);
+    }
+
+    @Override
+    public Redis insertRedisData(Redis redis) {
+        return productMapper.insertRedisData(redis);
     }
 }

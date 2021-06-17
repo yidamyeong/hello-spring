@@ -1,9 +1,12 @@
 package com.dam.hellospring.controller;
 
 import com.dam.hellospring.domain.Product;
+import com.dam.hellospring.domain.Redis;
 import com.dam.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
@@ -12,10 +15,12 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final JedisPool jedisPool;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, JedisPool jedisPool) {
         this.productService = productService;
+        this.jedisPool = jedisPool;
     }
 
     @GetMapping("/hello")
@@ -50,5 +55,14 @@ public class ProductController {
         return "상품이 삭제되었습니다.";
     }
 
-    
+    @PostMapping("/redis")
+    public Redis insertRedisData(@RequestBody String key) {
+        Jedis jedis = jedisPool.getResource();
+        Redis redis = new Redis(key, jedis.get(key));
+
+        jedis.close();
+
+        return productService.insertRedisData(redis);
+    }
+
 }
